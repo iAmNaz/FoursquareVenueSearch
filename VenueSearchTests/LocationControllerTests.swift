@@ -13,49 +13,6 @@ import CoreLocation
 @testable import VenueSearch
 
 class LocationControllerTests: XCTestCase {
-
-    func testStartReceivingChangesWhileAuthIsNotDeterminedShouldBeRejected() {
-        FakeLocationManagerData.sharedInstance.locationServicesEnabled = false
-        let mockManager = MockLocationManager()
-        let request = Request(proc: Task.location(.start))
-        let locationController = LocationController(locationManager: mockManager)
-        let promise = locationController.tx(request: request)
-        XCTAssertTrue(promise.isRejected)
-    }
-    
-    func testStartReceivingChangesWhileSensorDisabledShouldReturnDisabledError() {
-        FakeLocationManagerData.sharedInstance.currentAuthStatus = .authorizedWhenInUse
-        FakeLocationManagerData.sharedInstance.locationServicesEnabled = false
-        let mockManager = MockLocationManager()
-        let request = Request(proc: Task.location(.start))
-        let locationController = LocationController(locationManager: mockManager)
-        let promise = locationController.tx(request: request)
-        
-        XCTAssertTrue(promise.isRejected)
-        
-        let err:AppError = promise.error! as! AppError
-        
-        switch err {
-            case .location(.disabled):
-                XCTAssertTrue(true)
-            default:
-                XCTAssertTrue(false)
-        }
-    }
-    
-    func testStartReceivingChangesWithIncorrectAuthReturnNotAuthError() {
-        FakeLocationManagerData.sharedInstance.currentAuthStatus = .authorizedAlways
-        FakeLocationManagerData.sharedInstance.locationServicesEnabled = true
-        let mockManager = MockLocationManager()
-        let request = Request(proc: Task.location(.start))
-        let locationController = LocationController(locationManager: mockManager)
-        let promise = locationController.tx(request: request)
-        
-        XCTAssertTrue(promise.isRejected)
-        
-        let err:AppError = promise.error! as! AppError
-        XCTAssertEqual(err, AppError.location(.notAuth))
-    }
     
     func testStartReceivingChangesWithSensorEnabledAndAuthShouldSucceed() {
         FakeLocationManagerData.sharedInstance.currentAuthStatus = .authorizedWhenInUse
