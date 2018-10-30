@@ -6,8 +6,6 @@ target 'VenueSearch' do
   use_frameworks!
 
   pod 'DecouplerKit', :path => '../DecouplerKit/'
-  pod 'SwiftLint'
-#  pod 'ReachabilitySwift'
 
   target 'VenueSearchTests' do
     inherit! :search_paths
