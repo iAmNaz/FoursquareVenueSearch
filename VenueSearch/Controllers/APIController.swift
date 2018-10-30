@@ -74,6 +74,7 @@ class APIController: NSObject, URLSessionDelegate, Interface {
                         var venuesVM = [VenueViewModel]()
                         
                         let sorted = response.response.venues.sorted( by: { $0.location.distance < $1.location.distance})
+                        
                         for venue in sorted {
                             let vm = VenueViewModel(venue: venue)
                                 venuesVM.append(vm)
