@@ -1,0 +1,415 @@
+{
+    "meta": {
+        "code": 200,
+        "requestId": "5bd7316b6a60713bc3efae35"
+    },
+    "response": {
+        "venues": [
+            {
+                "id": "558baa66498e3d8ef444888b",
+                "name": "mezza 2 residences",
+                "location": {
+                    "lat": 14.607015095729157,
+                    "lng": 121.01956425472008,
+                    "labeledLatLngs": [
+                        {
+                            "label": "display",
+                            "lat": 14.607015095729157,
+                            "lng": 121.01956425472008
+                        }
+                    ],
+                    "distance": 85,
+                    "cc": "PH",
+                    "country": "Philippines",
+                    "formattedAddress": [
+                        "Philippines"
+                    ]
+                },
+                "categories": [
+                    {
+                        "id": "4d954b06a243a5684965b473",
+                        "name": "Residential Building (Apartment / Condo)",
+                        "pluralName": "Residential Buildings (Apartments / Condos)",
+                        "shortName": "Residential",
+                        "icon": {
+                            "prefix": "https://ss3.4sqi.net/img/categories_v2/building/apartment_",
+                            "suffix": ".png"
+                        },
+                        "primary": true
+                    }
+                ],
+                "referralId": "v-1540829547",
+                "hasPerk": false
+            },
+            {
+                "id": "583ec85b6d6325512808a90b",
+                "name": "Burger King",
+                "location": {
+                    "address": "Mezza strip",
+                    "lat": 14.606437800913438,
+                    "lng": 121.01916864042667,
+                    "labeledLatLngs": [
+                        {
+                            "label": "display",
+                            "lat": 14.606437800913438,
+                            "lng": 121.01916864042667
+                        }
+                    ],
+                    "distance": 106,
+                    "cc": "PH",
+                    "city": "Quezon City",
+                    "state": "Quezon City",
+                    "country": "Philippines",
+                    "formattedAddress": [
+                        "Mezza strip",
+                        "Quezon City",
+                        "Quezon City",
+                        "Philippines"
+                    ]
+                },
+                "categories": [
+                    {
+                        "id": "4bf58dd8d48988d16e941735",
+                        "name": "Fast Food Restaurant",
+                        "pluralName": "Fast Food Restaurants",
+                        "shortName": "Fast Food",
+                        "icon": {
+                            "prefix": "https://ss3.4sqi.net/img/categories_v2/food/fastfood_",
+                            "suffix": ".png"
+                        },
+                        "primary": true
+                    }
+                ],
+                "referralId": "v-1540829547",
+                "hasPerk": false
+            },
+            {
+                "id": "50b70c22e4b049dbad4eee9a",
+                "name": "Mezza Residences Admin Office",
+                "location": {
+                    "address": "4th flr Mezza Residences",
+                    "crossStreet": "Araneta Ave. Cor Aurora Blvd.",
+                    "lat": 14.607052246653648,
+                    "lng": 121.01875226408283,
+                    "labeledLatLngs": [
+                        {
+                            "label": "display",
+                            "lat": 14.607052246653648,
+                            "lng": 121.01875226408283
+                        }
+                    ],
+                    "distance": 33,
+                    "cc": "PH",
+                    "city": "Quezon City",
+                    "state": "Quezon City",
+                    "country": "Philippines",
+                    "formattedAddress": [
+                        "4th flr Mezza Residences (Araneta Ave. Cor Aurora Blvd.)",
+                        "Quezon City",
+                        "Quezon City",
+                        "Philippines"
+                    ]
+                },
+                "categories": [
+                    {
+                        "id": "4bf58dd8d48988d124941735",
+                        "name": "Office",
+                        "pluralName": "Offices",
+                        "shortName": "Office",
+                        "icon": {
+                            "prefix": "https://ss3.4sqi.net/img/categories_v2/building/default_",
+                            "suffix": ".png"
+                        },
+                        "primary": true
+                    }
+                ],
+                "referralId": "v-1540829547",
+                "hasPerk": false
+            },
+            {
+                "id": "5233bfc711d2680610ec4a3c",
+                "name": "Mr. Liempo",
+                "location": {
+                    "lat": 14.607664744339983,
+                    "lng": 121.01874666412844,
+                    "labeledLatLngs": [
+                        {
+                            "label": "display",
+                            "lat": 14.607664744339983,
+                            "lng": 121.01874666412844
+                        }
+                    ],
+                    "distance": 37,
+                    "cc": "PH",
+                    "country": "Philippines",
+                    "formattedAddress": [
+                        "Philippines"
+                    ]
+                },
+                "categories": [
+                    {
+                        "id": "4bf58dd8d48988d1df931735",
+                        "name": "BBQ Joint",
+                        "pluralName": "BBQ Joints",
+                        "shortName": "BBQ",
+                        "icon": {
+                            "prefix": "https://ss3.4sqi.net/img/categories_v2/food/bbqalt_",
+                            "suffix": ".png"
+                        },
+                        "primary": true
+                    }
+                ],
+                "referralId": "v-1540829547",
+                "hasPerk": false
+            },
+            {
+                "id": "4faa49f1e4b0c4df8b916366",
+                "name": "Mezza Residences Play Ground",
+                "location": {
+                    "address": "5th Floor, Mezza Residences",
+                    "lat": 14.606677334964283,
+                    "lng": 121.01883020892737,
+                    "labeledLatLngs": [
+                        {
+                            "label": "display",
+                            "lat": 14.606677334964283,
+                            "lng": 121.01883020892737
+                        }
+                    ],
+                    "distance": 73,
+                    "cc": "PH",
+                    "country": "Philippines",
+                    "formattedAddress": [
+                        "5th Floor, Mezza Residences",
+                        "Philippines"
+                    ]
+                },
+                "categories": [
+                    {
+                        "id": "4bf58dd8d48988d1e7941735",
+                        "name": "Playground",
+                        "pluralName": "Playgrounds",
+                        "shortName": "Playground",
+                        "icon": {
+                            "prefix": "https://ss3.4sqi.net/img/categories_v2/parks_outdoors/playground_",
+                            "suffix": ".png"
+                        },
+                        "primary": true
+                    }
+                ],
+                "referralId": "v-1540829547",
+                "hasPerk": false
+            },
+            {
+                "id": "554a2376498e49ea31803bf2",
+                "name": "Save More Market - Mezza",
+                "location": {
+                    "lat": 14.607224738604245,
+                    "lng": 121.0190378614119,
+                    "labeledLatLngs": [
+                        {
+                            "label": "display",
+                            "lat": 14.607224738604245,
+                            "lng": 121.0190378614119
+                        }
+                    ],
+                    "distance": 24,
+                    "cc": "PH",
+                    "country": "Philippines",
+                    "formattedAddress": [
+                        "Philippines"
+                    ]
+                },
+                "categories": [
+                    {
+                        "id": "50be8ee891d4fa8dcc7199a7",
+                        "name": "Market",
+                        "pluralName": "Markets",
+                        "shortName": "Market",
+                        "icon": {
+                            "prefix": "https://ss3.4sqi.net/img/categories_v2/shops/market_",
+                            "suffix": ".png"
+                        },
+                        "primary": true
+                    }
+                ],
+                "referralId": "v-1540829547",
+                "hasPerk": false
+            },
+            {
+                "id": "4d3227d6c6cba35dfb811e7a",
+                "name": "Mezza Residences Tower 3",
+                "location": {
+                    "address": "Aurora Blvd",
+                    "crossStreet": "Aurora Boulevard",
+                    "lat": 14.606912611249006,
+                    "lng": 121.01936048279073,
+                    "labeledLatLngs": [
+                        {
+                            "label": "display",
+                            "lat": 14.606912611249006,
+                            "lng": 121.01936048279073
+                        }
+                    ],
+                    "distance": 73,
+                    "cc": "PH",
+                    "city": "Quezon City",
+                    "state": "Quezon City",
+                    "country": "Philippines",
+                    "formattedAddress": [
+                        "Aurora Blvd (Aurora Boulevard)",
+                        "Quezon City",
+                        "Quezon City",
+                        "Philippines"
+                    ]
+                },
+                "categories": [
+                    {
+                        "id": "4d954b06a243a5684965b473",
+                        "name": "Residential Building (Apartment / Condo)",
+                        "pluralName": "Residential Buildings (Apartments / Condos)",
+                        "shortName": "Residential",
+                        "icon": {
+                            "prefix": "https://ss3.4sqi.net/img/categories_v2/building/apartment_",
+                            "suffix": ".png"
+                        },
+                        "primary": true
+                    }
+                ],
+                "referralId": "v-1540829547",
+                "hasPerk": false
+            },
+            {
+                "id": "4e4a01671f6e2d88d8b4bed1",
+                "name": "Paotsin",
+                "location": {
+                    "address": "Savemore",
+                    "crossStreet": "Ramon Magsaysay Blvd.",
+                    "lat": 14.607207949659298,
+                    "lng": 121.01914986018018,
+                    "labeledLatLngs": [
+                        {
+                            "label": "display",
+                            "lat": 14.607207949659298,
+                            "lng": 121.01914986018018
+                        }
+                    ],
+                    "distance": 36,
+                    "cc": "PH",
+                    "city": "Manila",
+                    "state": "City of Manila",
+                    "country": "Philippines",
+                    "formattedAddress": [
+                        "Savemore (Ramon Magsaysay Blvd.)",
+                        "Manila",
+                        "City of Manila",
+                        "Philippines"
+                    ]
+                },
+                "categories": [
+                    {
+                        "id": "4bf58dd8d48988d120951735",
+                        "name": "Food Court",
+                        "pluralName": "Food Courts",
+                        "shortName": "Food Court",
+                        "icon": {
+                            "prefix": "https://ss3.4sqi.net/img/categories_v2/shops/food_foodcourt_",
+                            "suffix": ".png"
+                        },
+                        "primary": true
+                    }
+                ],
+                "referralId": "v-1540829547",
+                "hasPerk": false
+            },
+            {
+                "id": "4d0887a0611ff04d78701bfb",
+                "name": "ERSAO 二嫂",
+                "location": {
+                    "address": "Ground Flr, Mezza Residences",
+                    "crossStreet": "at Aurora Blvd & Araneta Ave",
+                    "lat": 14.607380929331097,
+                    "lng": 121.0118766073422,
+                    "labeledLatLngs": [
+                        {
+                            "label": "display",
+                            "lat": 14.607380929331097,
+                            "lng": 121.0118766073422
+                        }
+                    ],
+                    "distance": 750,
+                    "cc": "PH",
+                    "city": "Quezon City",
+                    "state": "Quezon City",
+                    "country": "Philippines",
+                    "formattedAddress": [
+                        "Ground Flr, Mezza Residences (at Aurora Blvd & Araneta Ave)",
+                        "Quezon City",
+                        "Quezon City",
+                        "Philippines"
+                    ]
+                },
+                "categories": [
+                    {
+                        "id": "4bf58dd8d48988d145941735",
+                        "name": "Chinese Restaurant",
+                        "pluralName": "Chinese Restaurants",
+                        "shortName": "Chinese",
+                        "icon": {
+                            "prefix": "https://ss3.4sqi.net/img/categories_v2/food/asian_",
+                            "suffix": ".png"
+                        },
+                        "primary": true
+                    }
+                ],
+                "referralId": "v-1540829547",
+                "hasPerk": false
+            },
+            {
+                "id": "4ba3addaf964a5205f5338e3",
+                "name": "Mezza Residences",
+                "location": {
+                    "address": "Araneta Ave.",
+                    "crossStreet": "Aurora Blvd.",
+                    "lat": 14.60687826092893,
+                    "lng": 121.01876745602064,
+                    "labeledLatLngs": [
+                        {
+                            "label": "display",
+                            "lat": 14.60687826092893,
+                            "lng": 121.01876745602064
+                        }
+                    ],
+                    "distance": 51,
+                    "postalCode": "1113",
+                    "cc": "PH",
+                    "city": "Quezon City",
+                    "state": "Quezon City",
+                    "country": "Philippines",
+                    "formattedAddress": [
+                        "Araneta Ave. (Aurora Blvd.)",
+                        "1113 Quezon City",
+                        "Quezon City",
+                        "Philippines"
+                    ]
+                },
+                "categories": [
+                    {
+                        "id": "4d954b06a243a5684965b473",
+                        "name": "Residential Building (Apartment / Condo)",
+                        "pluralName": "Residential Buildings (Apartments / Condos)",
+                        "shortName": "Residential",
+                        "icon": {
+                            "prefix": "https://ss3.4sqi.net/img/categories_v2/building/apartment_",
+                            "suffix": ".png"
+                        },
+                        "primary": true
+                    }
+                ],
+                "referralId": "v-1540829547",
+                "hasPerk": false
+            }
+        ],
+        "confident": false
+    }
+}
