@@ -8,6 +8,18 @@
 
 import UIKit
 import CoreLocation
+import DecouplerKit
+import PromiseKit
+
+@testable import VenueSearch
+
+class MockAPIController: APIController {
+    var reloadCalled: Bool!
+    
+    override func reloadList(latitude: Float, longitude: Float) {
+        reloadCalled = true
+    }
+}
 
 class FakeLocationManagerData {
     var currentAuthStatus = CLAuthorizationStatus.notDetermined
@@ -22,5 +34,59 @@ class MockLocationManager: CLLocationManager {
     
     override class func locationServicesEnabled() -> Bool {
         return FakeLocationManagerData.sharedInstance.locationServicesEnabled
+    }
+}
+
+class MockLocationControllerDelegate: LocationControllerDelegate{
+    var currentLocation: CLLocationCoordinate2D!
+    var updateCalled = false
+    
+    func locationChanged(latitude: Float, longitude: Float) {
+        updateCalled = true
+    }
+}
+
+class MockTxReceiver: NSObject, Interface {
+    var currentMessage: Task!
+    
+    func tx(request: Request) -> Promise<MessageContainer> {
+        currentMessage = request.process as? Task
+        return Promise { seal in
+            seal.fulfill(Response(proc: request.process))
+        }
+    }
+}
+
+class MockRegistry: ResponderRegistry {
+
+    var currentTask: Task!
+    var request: Request!
+    
+    override func tx(request: Request) -> Promise<MessageContainer> {
+        self.request = request
+        currentTask = request.process as? Task
+        return Promise { seal in
+            seal.fulfill(Response(proc: request.process))
+        }
+    }
+}
+
+
+protocol ReachabilityProtocol {
+    var connection: Connection { get }
+}
+
+class MockReachability: Reachability {
+    var currentConn: Connection!
+    var shouldThrow = false
+    
+    override func connection() -> Connection {
+        return currentConn
+    }
+    
+    @objc override func startNotifier() throws {
+        if shouldThrow {
+            throw ReachabilityError.UnableToSetCallback
+        }
     }
 }
