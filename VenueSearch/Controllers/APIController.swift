@@ -29,6 +29,7 @@ class APIController: NSObject, URLSessionDelegate, Interface {
         self.session = session
     }
     
+    @discardableResult
     func tx(request: Request) -> Promise<MessageContainer> {
         let task = request.process as! Task
         switch task {
@@ -44,6 +45,12 @@ class APIController: NSObject, URLSessionDelegate, Interface {
         }
     }
     
+    /// This method is called when new location information is delivered
+    /// Using the lat and long a new http request is sent that eventually
+    /// will receive a response and in ideal situations the list of the venues
+    /// is received then decoded and set to the view model for display
+    /// - parameter latitude: a Float for the latitude coordinate
+    /// - parameter longitude: a Float for the longitude coordinate
     func reloadList(latitude: Float, longitude: Float) {
         
         if !reachable() {
@@ -107,7 +114,7 @@ class APIController: NSObject, URLSessionDelegate, Interface {
         return request
     }
     
-    func startMonitoring() {
+    private func startMonitoring() {
         reachability.whenReachable = { reachability in
             self.markOnline()
         }
@@ -122,7 +129,7 @@ class APIController: NSObject, URLSessionDelegate, Interface {
         }
     }
     
-    func reachable() -> Bool {
+    private func reachable() -> Bool {
         return reachability.connection() != .none
     }
     
