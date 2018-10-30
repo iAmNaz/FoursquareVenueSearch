@@ -7,9 +7,11 @@
 //
 
 import UIKit
+import DecouplerKit
 
 class MainViewController: UIViewController {
-
+    var registry: ResponderRegistry!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
