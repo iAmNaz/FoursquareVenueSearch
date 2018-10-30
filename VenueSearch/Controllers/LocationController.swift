@@ -64,27 +64,25 @@ class LocationController<T: CLLocationManager>: NSObject, Interface, CLLocationM
     /// a Promise with a MessageContainer
     func startReceivingLocationChanges(request: Request) -> Promise<MessageContainer> {
         
-        let authorizationStatus = T.authorizationStatus()
-        
-        if authorizationStatus != .authorizedWhenInUse {
-            return Promise<MessageContainer> { seal in
-                seal.reject(AppError.location(.notAuth))
-            }
-        }
-        
-        if !T.locationServicesEnabled() {
-            return Promise<MessageContainer> { seal in
-                seal.reject(AppError.location(.disabled))
-            }
-        }
-        
-        locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
-        locationManager.distanceFilter = 500.0  // In meters.
-        locationManager.delegate = self
-        locationManager.startUpdatingLocation()
+        self.locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
+        self.locationManager.distanceFilter = 200.0
+        self.locationManager.delegate = self
         
         return Promise { seal in
             seal.fulfill(Response(proc: request.process))
+        }
+    }
+    
+    func enableLocationServices(status: CLAuthorizationStatus){
+        switch status {
+        case .notDetermined:
+            locationManager.requestWhenInUseAuthorization()
+            break
+        case .restricted, .denied:
+            self.uiRegistry.tx(request: Request(proc: Task.mainView(.locationDisabled)))
+        case .authorizedWhenInUse, .authorizedAlways:
+            locationManager.startUpdatingLocation()
+            break
         }
     }
     
@@ -92,6 +90,11 @@ class LocationController<T: CLLocationManager>: NSObject, Interface, CLLocationM
         let recent = locations.last
         delegate?.locationChanged(latitude: Float(recent!.coordinate.latitude), longitude: Float(recent!.coordinate.longitude))
     }
+    
+    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+        enableLocationServices(status: status)
+    }
+    
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
         print(error)
     }
