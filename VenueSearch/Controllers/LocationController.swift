@@ -48,7 +48,14 @@ class LocationController<T: CLLocationManager>: NSObject, Interface, CLLocationM
             }
     }
     
-    func requestForLocationWhenOnline(request: Request) -> Promise<MessageContainer> {
+    /// Whenever the app is connected to the internet a new venue list is requested
+    /// While previous location information is not used to fill the list with venues
+    /// stopping and starting location updates triggers a new location event
+    /// which causes the app to reload the venue list
+    /// - parameter request: a Request object
+    /// - Returns:
+    /// a Promise with a MessageContainer
+    private func requestForLocationWhenOnline(request: Request) -> Promise<MessageContainer> {
         self.locationManager.stopUpdatingLocation()
         self.locationManager.startUpdatingLocation()
         return Promise { seal in
@@ -73,7 +80,7 @@ class LocationController<T: CLLocationManager>: NSObject, Interface, CLLocationM
         }
     }
     
-    func enableLocationServices(status: CLAuthorizationStatus){
+    private func enableLocationServices(status: CLAuthorizationStatus){
         switch status {
         case .notDetermined:
             locationManager.requestWhenInUseAuthorization()
