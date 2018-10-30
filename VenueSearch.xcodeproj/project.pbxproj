@@ -34,6 +34,9 @@
 		45B4504721831E9600173518 /* Enumerations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45B4504621831E9600173518 /* Enumerations.swift */; };
 		45B450492183256200173518 /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45B450482183256200173518 /* Errors.swift */; };
 		45B4504B2183310200173518 /* TestUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45B4504A2183310200173518 /* TestUtil.swift */; };
+		45BC61082188728700C989D4 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45BC61072188728700C989D4 /* DetailViewController.swift */; };
+		45BC610A2188781400C989D4 /* MainViewController+Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45BC61092188781400C989D4 /* MainViewController+Settings.swift */; };
+		45BC610E21887D2100C989D4 /* ViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45BC610D21887D2100C989D4 /* ViewModelTests.swift */; };
 		46559E058F19783F79EBE5B8 /* Pods_VenueSearchTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F85D0E8AE694169148560391 /* Pods_VenueSearchTests.framework */; };
 		94931954986E4A3A39585B83 /* Pods_VenueSearch.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B430869D920E17D81DE87261 /* Pods_VenueSearch.framework */; };
 		95C2AC35D51D299B536D4432 /* Pods_VenueSearchUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C4511AB54120BFFD3A495DE /* Pods_VenueSearchUITests.framework */; };
@@ -91,6 +94,9 @@
 		45B4504621831E9600173518 /* Enumerations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enumerations.swift; sourceTree = "<group>"; };
 		45B450482183256200173518 /* Errors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Errors.swift; sourceTree = "<group>"; };
 		45B4504A2183310200173518 /* TestUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestUtil.swift; sourceTree = "<group>"; };
+		45BC61072188728700C989D4 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		45BC61092188781400C989D4 /* MainViewController+Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MainViewController+Settings.swift"; sourceTree = "<group>"; };
+		45BC610D21887D2100C989D4 /* ViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelTests.swift; sourceTree = "<group>"; };
 		838152E17517F88D57C3FB11 /* Pods-VenueSearch.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VenueSearch.debug.xcconfig"; path = "Pods/Target Support Files/Pods-VenueSearch/Pods-VenueSearch.debug.xcconfig"; sourceTree = "<group>"; };
 		85E8CD3F95F1C0B5C69CCD33 /* Pods-VenueSearchUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VenueSearchUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-VenueSearchUITests/Pods-VenueSearchUITests.release.xcconfig"; sourceTree = "<group>"; };
 		9E79610C1BE9F2067FCFED92 /* Pods-VenueSearchUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VenueSearchUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-VenueSearchUITests/Pods-VenueSearchUITests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -148,6 +154,8 @@
 			isa = PBXGroup;
 			children = (
 				45B450122183087D00173518 /* MainViewController.swift */,
+				45BC61092188781400C989D4 /* MainViewController+Settings.swift */,
+				45BC61072188728700C989D4 /* DetailViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -219,6 +227,7 @@
 				459057A92187D01E00B20861 /* APIResponseTests.swift */,
 				459057B12187DCA200B20861 /* TaskTests.swift */,
 				459057B32187E47600B20861 /* ErrorTests.swift */,
+				45BC610D21887D2100C989D4 /* ViewModelTests.swift */,
 				45B450272183087F00173518 /* Info.plist */,
 			);
 			path = VenueSearchTests;
@@ -485,6 +494,7 @@
 				459057982186B44700B20861 /* Venue.swift in Sources */,
 				459057942186B0D600B20861 /* Location.swift in Sources */,
 				459057AC2187D2C500B20861 /* Convenience.swift in Sources */,
+				45BC610A2188781400C989D4 /* MainViewController+Settings.swift in Sources */,
 				459057B02187D77500B20861 /* VenueViewModel.swift in Sources */,
 				4590579A2186B50B00B20861 /* Meta.swift in Sources */,
 				4590579F2186B7B400B20861 /* APIResponse.swift in Sources */,
@@ -493,6 +503,7 @@
 				45B4504421831C5600173518 /* LocationController.swift in Sources */,
 				45704A252183671600E162CA /* APIController.swift in Sources */,
 				45B450112183087D00173518 /* AppDelegate.swift in Sources */,
+				45BC61082188728700C989D4 /* DetailViewController.swift in Sources */,
 				45B4504721831E9600173518 /* Enumerations.swift in Sources */,
 				459057A621870B0A00B20861 /* Reachability.swift in Sources */,
 			);
@@ -508,6 +519,7 @@
 				45B4504221831A4F00173518 /* LocationControllerTests.swift in Sources */,
 				459057B42187E47600B20861 /* ErrorTests.swift in Sources */,
 				459057AA2187D01E00B20861 /* APIResponseTests.swift in Sources */,
+				45BC610E21887D2100C989D4 /* ViewModelTests.swift in Sources */,
 				45B4504B2183310200173518 /* TestUtil.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
