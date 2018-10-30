@@ -56,7 +56,7 @@ class APIControllerTests: XCTestCase {
         reachability!.currentConn = Connection.none
         
         api.reachability = reachability
-        api.startMonitoring()
+        api.tx(request: Request(proc: Task.api(.start)))
         
         let block = reachability?.whenUnreachable
             block!(reachability!)
@@ -72,7 +72,7 @@ class APIControllerTests: XCTestCase {
             reachability!.currentConn = Connection.cellular
         
         api.reachability = reachability
-        api.startMonitoring()
+        api.tx(request: Request(proc: Task.api(.start)))
         
         let block = reachability?.whenReachable
         block!(reachability!)
@@ -89,7 +89,7 @@ class APIControllerTests: XCTestCase {
         reachability!.currentConn = Connection.cellular
         reachability!.shouldThrow = true
         api.reachability = reachability
-        api.startMonitoring()
+        api.tx(request: Request(proc: Task.api(.start)))
         
         XCTAssert(registry.currentTask == Task.mainView(.offline))
     }
