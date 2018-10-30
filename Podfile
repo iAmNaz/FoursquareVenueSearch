@@ -7,8 +7,8 @@ target 'VenueSearch' do
 
   pod 'DecouplerKit', :path => '../DecouplerKit/'
   pod 'SwiftLint'
-  pod 'ReachabilitySwift'
-  
+#  pod 'ReachabilitySwift'
+
   target 'VenueSearchTests' do
     inherit! :search_paths
     # Pods for testing
