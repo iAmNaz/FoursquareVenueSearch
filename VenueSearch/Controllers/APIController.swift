@@ -73,16 +73,17 @@ class APIController: NSObject, URLSessionDelegate, Interface {
                         
                         var venuesVM = [VenueViewModel]()
                         
-                        for venue in response.response.venues {
+                        let sorted = response.response.venues.sorted( by: { $0.location.distance < $1.location.distance})
+                        for venue in sorted {
                             let vm = VenueViewModel(venue: venue)
                                 venuesVM.append(vm)
                         }
+                        
                         self.uiRegistry.tx(request: Request(proc: Task.mainView(.displayData), body: venuesVM))
                     } else{
                         self.uiRegistry.tx(request: Request(proc: Task.mainView(.fetchFailed)))
                     }
                 } catch {
-                    print("error \(error)")
                     self.uiRegistry.tx(request: Request(proc: Task.mainView(.fetchFailed)))
                 }
             }else{
