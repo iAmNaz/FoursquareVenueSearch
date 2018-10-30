@@ -23,7 +23,7 @@ protocol LocationControllerDelegate {
 /// transmit interface with a start request and will initiate the location manager.
 /// - important: the type parameter T is a CLLocationManager instance or an instance of a class that inherited from it. This solution helped in making the controller much more testable.
 class LocationController<T: CLLocationManager>: NSObject, Interface, CLLocationManagerDelegate {
-    
+    var uiRegistry: ResponderRegistry!
     private var locationManager:T!
     
     var delegate: LocationControllerDelegate?
@@ -39,11 +39,21 @@ class LocationController<T: CLLocationManager>: NSObject, Interface, CLLocationM
         switch task {
             case .location(.start):
                 return startReceivingLocationChanges(request:request)
+            case .location(.online):
+                return requestForLocationWhenOnline(request: request)
             default:
                 return Promise { seal in
                     seal.reject(AppError.generic(.undefined(message: NSLocalizedString("LocationController is unable to handle the task", comment: ""))))
                 }
             }
+    }
+    
+    func requestForLocationWhenOnline(request: Request) -> Promise<MessageContainer> {
+        self.locationManager.stopUpdatingLocation()
+        self.locationManager.startUpdatingLocation()
+        return Promise { seal in
+            seal.fulfill(Response(proc: request.process))
+        }
     }
     
     /// The corelocation manager is initiated here.
@@ -81,5 +91,8 @@ class LocationController<T: CLLocationManager>: NSObject, Interface, CLLocationM
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         let recent = locations.last
         delegate?.locationChanged(latitude: Float(recent!.coordinate.latitude), longitude: Float(recent!.coordinate.longitude))
+    }
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        print(error)
     }
 }

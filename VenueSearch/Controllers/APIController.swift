@@ -117,7 +117,6 @@ class APIController: NSObject, URLSessionDelegate, Interface {
             try reachability.startNotifier()
         } catch {
             self.markOffline()
-            print("Unable to start notifier")
         }
     }
     
@@ -126,6 +125,7 @@ class APIController: NSObject, URLSessionDelegate, Interface {
     }
     
     private func markOnline() {
+        self.uiRegistry.tx(request: Request(proc: Task.location(.online)))
         self.uiRegistry.tx(request: Request(proc: Task.mainView(.online)))
     }
     
