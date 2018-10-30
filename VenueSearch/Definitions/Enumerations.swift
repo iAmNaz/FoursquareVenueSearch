@@ -31,6 +31,7 @@ enum Task: Processable, Equatable {
     case location(LocationController)
     enum LocationController {
         case start
+        case online
     }
     
     ///APIController
@@ -49,6 +50,7 @@ enum Task: Processable, Equatable {
         case fetchFailed
         case fetchCompleted
         case displayData
+        case locationDisabled
     }
     
     static func == (lhs: Task, rhs: Task) -> Bool {
