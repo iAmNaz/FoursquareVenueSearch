@@ -7,8 +7,24 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		45704A252183671600E162CA /* APIController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45704A242183671600E162CA /* APIController.swift */; };
+		45704A272183675B00E162CA /* APIControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45704A262183675B00E162CA /* APIControllerTests.swift */; };
+		459057922186924300B20861 /* venues.json in Resources */ = {isa = PBXBuildFile; fileRef = 459057912186924300B20861 /* venues.json */; };
+		459057942186B0D600B20861 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 459057932186B0D600B20861 /* Location.swift */; };
+		459057962186B40F00B20861 /* ResponseBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = 459057952186B40F00B20861 /* ResponseBody.swift */; };
+		459057982186B44700B20861 /* Venue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 459057972186B44700B20861 /* Venue.swift */; };
+		4590579A2186B50B00B20861 /* Meta.swift in Sources */ = {isa = PBXBuildFile; fileRef = 459057992186B50B00B20861 /* Meta.swift */; };
+		4590579F2186B7B400B20861 /* APIResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4590579E2186B7B400B20861 /* APIResponse.swift */; };
+		459057A12186E86600B20861 /* NetworkingMocks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 459057A02186E86600B20861 /* NetworkingMocks.swift */; };
+		459057A621870B0A00B20861 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 459057A521870B0A00B20861 /* Reachability.swift */; };
+		459057AA2187D01E00B20861 /* APIResponseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 459057A92187D01E00B20861 /* APIResponseTests.swift */; };
+		459057AC2187D2C500B20861 /* Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = 459057AB2187D2C500B20861 /* Convenience.swift */; };
+		459057AE2187D5D100B20861 /* venues-fail.json in Resources */ = {isa = PBXBuildFile; fileRef = 459057AD2187D5D100B20861 /* venues-fail.json */; };
+		459057B02187D77500B20861 /* VenueViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 459057AF2187D77500B20861 /* VenueViewModel.swift */; };
+		459057B22187DCA200B20861 /* TaskTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 459057B12187DCA200B20861 /* TaskTests.swift */; };
+		459057B42187E47600B20861 /* ErrorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 459057B32187E47600B20861 /* ErrorTests.swift */; };
 		45B450112183087D00173518 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45B450102183087D00173518 /* AppDelegate.swift */; };
-		45B450132183087D00173518 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45B450122183087D00173518 /* ViewController.swift */; };
+		45B450132183087D00173518 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45B450122183087D00173518 /* MainViewController.swift */; };
 		45B450162183087D00173518 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 45B450142183087D00173518 /* Main.storyboard */; };
 		45B450182183087F00173518 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 45B450172183087F00173518 /* Assets.xcassets */; };
 		45B4501B2183087F00173518 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 45B450192183087F00173518 /* LaunchScreen.storyboard */; };
@@ -18,8 +34,6 @@
 		45B4504721831E9600173518 /* Enumerations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45B4504621831E9600173518 /* Enumerations.swift */; };
 		45B450492183256200173518 /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45B450482183256200173518 /* Errors.swift */; };
 		45B4504B2183310200173518 /* TestUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45B4504A2183310200173518 /* TestUtil.swift */; };
-		45B4504D2183350700173518 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45B4504C2183350700173518 /* Extensions.swift */; };
-		45B4504E218336BA00173518 /* TestUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45B4504A2183310200173518 /* TestUtil.swift */; };
 		46559E058F19783F79EBE5B8 /* Pods_VenueSearchTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F85D0E8AE694169148560391 /* Pods_VenueSearchTests.framework */; };
 		94931954986E4A3A39585B83 /* Pods_VenueSearch.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B430869D920E17D81DE87261 /* Pods_VenueSearch.framework */; };
 		95C2AC35D51D299B536D4432 /* Pods_VenueSearchUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C4511AB54120BFFD3A495DE /* Pods_VenueSearchUITests.framework */; };
@@ -44,9 +58,25 @@
 
 /* Begin PBXFileReference section */
 		3C4511AB54120BFFD3A495DE /* Pods_VenueSearchUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_VenueSearchUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		45704A242183671600E162CA /* APIController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIController.swift; sourceTree = "<group>"; };
+		45704A262183675B00E162CA /* APIControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIControllerTests.swift; sourceTree = "<group>"; };
+		459057912186924300B20861 /* venues.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = venues.json; sourceTree = "<group>"; };
+		459057932186B0D600B20861 /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
+		459057952186B40F00B20861 /* ResponseBody.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseBody.swift; sourceTree = "<group>"; };
+		459057972186B44700B20861 /* Venue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Venue.swift; sourceTree = "<group>"; };
+		459057992186B50B00B20861 /* Meta.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Meta.swift; sourceTree = "<group>"; };
+		4590579E2186B7B400B20861 /* APIResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIResponse.swift; sourceTree = "<group>"; };
+		459057A02186E86600B20861 /* NetworkingMocks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingMocks.swift; sourceTree = "<group>"; };
+		459057A521870B0A00B20861 /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
+		459057A92187D01E00B20861 /* APIResponseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIResponseTests.swift; sourceTree = "<group>"; };
+		459057AB2187D2C500B20861 /* Convenience.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Convenience.swift; sourceTree = "<group>"; };
+		459057AD2187D5D100B20861 /* venues-fail.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "venues-fail.json"; sourceTree = "<group>"; };
+		459057AF2187D77500B20861 /* VenueViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VenueViewModel.swift; sourceTree = "<group>"; };
+		459057B12187DCA200B20861 /* TaskTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskTests.swift; sourceTree = "<group>"; };
+		459057B32187E47600B20861 /* ErrorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorTests.swift; sourceTree = "<group>"; };
 		45B4500D2183087D00173518 /* VenueSearch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VenueSearch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		45B450102183087D00173518 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		45B450122183087D00173518 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		45B450122183087D00173518 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		45B450152183087D00173518 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		45B450172183087F00173518 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		45B4501A2183087F00173518 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -61,7 +91,6 @@
 		45B4504621831E9600173518 /* Enumerations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enumerations.swift; sourceTree = "<group>"; };
 		45B450482183256200173518 /* Errors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Errors.swift; sourceTree = "<group>"; };
 		45B4504A2183310200173518 /* TestUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestUtil.swift; sourceTree = "<group>"; };
-		45B4504C2183350700173518 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		838152E17517F88D57C3FB11 /* Pods-VenueSearch.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VenueSearch.debug.xcconfig"; path = "Pods/Target Support Files/Pods-VenueSearch/Pods-VenueSearch.debug.xcconfig"; sourceTree = "<group>"; };
 		85E8CD3F95F1C0B5C69CCD33 /* Pods-VenueSearchUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VenueSearchUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-VenueSearchUITests/Pods-VenueSearchUITests.release.xcconfig"; sourceTree = "<group>"; };
 		9E79610C1BE9F2067FCFED92 /* Pods-VenueSearchUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VenueSearchUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-VenueSearchUITests/Pods-VenueSearchUITests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -100,6 +129,47 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4590579B2186B62D00B20861 /* Entities */ = {
+			isa = PBXGroup;
+			children = (
+				459057912186924300B20861 /* venues.json */,
+				459057AD2187D5D100B20861 /* venues-fail.json */,
+				459057972186B44700B20861 /* Venue.swift */,
+				459057932186B0D600B20861 /* Location.swift */,
+				459057952186B40F00B20861 /* ResponseBody.swift */,
+				459057992186B50B00B20861 /* Meta.swift */,
+				4590579E2186B7B400B20861 /* APIResponse.swift */,
+				459057AF2187D77500B20861 /* VenueViewModel.swift */,
+			);
+			path = Entities;
+			sourceTree = "<group>";
+		};
+		4590579C2186B63900B20861 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				45B450122183087D00173518 /* MainViewController.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		4590579D2186B64300B20861 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				45B4504321831C5600173518 /* LocationController.swift */,
+				45704A242183671600E162CA /* APIController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		459057A22187087400B20861 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				459057A521870B0A00B20861 /* Reachability.swift */,
+				459057AB2187D2C500B20861 /* Convenience.swift */,
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
 		45B450042183087D00173518 = {
 			isa = PBXGroup;
 			children = (
@@ -125,10 +195,12 @@
 		45B4500F2183087D00173518 /* VenueSearch */ = {
 			isa = PBXGroup;
 			children = (
-				45B4504521831E8500173518 /* Structures */,
 				45B450102183087D00173518 /* AppDelegate.swift */,
-				45B450122183087D00173518 /* ViewController.swift */,
-				45B4504321831C5600173518 /* LocationController.swift */,
+				459057A22187087400B20861 /* Utilities */,
+				45B4504521831E8500173518 /* Definitions */,
+				4590579C2186B63900B20861 /* ViewControllers */,
+				4590579D2186B64300B20861 /* Controllers */,
+				4590579B2186B62D00B20861 /* Entities */,
 				45B450142183087D00173518 /* Main.storyboard */,
 				45B450172183087F00173518 /* Assets.xcassets */,
 				45B450192183087F00173518 /* LaunchScreen.storyboard */,
@@ -141,7 +213,12 @@
 			isa = PBXGroup;
 			children = (
 				45B4504121831A4F00173518 /* LocationControllerTests.swift */,
+				45704A262183675B00E162CA /* APIControllerTests.swift */,
 				45B4504A2183310200173518 /* TestUtil.swift */,
+				459057A02186E86600B20861 /* NetworkingMocks.swift */,
+				459057A92187D01E00B20861 /* APIResponseTests.swift */,
+				459057B12187DCA200B20861 /* TaskTests.swift */,
+				459057B32187E47600B20861 /* ErrorTests.swift */,
 				45B450272183087F00173518 /* Info.plist */,
 			);
 			path = VenueSearchTests;
@@ -156,14 +233,13 @@
 			path = VenueSearchUITests;
 			sourceTree = "<group>";
 		};
-		45B4504521831E8500173518 /* Structures */ = {
+		45B4504521831E8500173518 /* Definitions */ = {
 			isa = PBXGroup;
 			children = (
 				45B4504621831E9600173518 /* Enumerations.swift */,
 				45B450482183256200173518 /* Errors.swift */,
-				45B4504C2183350700173518 /* Extensions.swift */,
 			);
-			path = Structures;
+			path = Definitions;
 			sourceTree = "<group>";
 		};
 		BCB2211356D1819D416003B9 /* Frameworks */ = {
@@ -298,7 +374,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				45B4501B2183087F00173518 /* LaunchScreen.storyboard in Resources */,
+				459057922186924300B20861 /* venues.json in Resources */,
 				45B450182183087F00173518 /* Assets.xcassets in Resources */,
+				459057AE2187D5D100B20861 /* venues-fail.json in Resources */,
 				45B450162183087D00173518 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -348,14 +426,12 @@
 				"${BUILT_PRODUCTS_DIR}/DecouplerKit/DecouplerKit.framework",
 				"${BUILT_PRODUCTS_DIR}/Dip/Dip.framework",
 				"${BUILT_PRODUCTS_DIR}/PromiseKit/PromiseKit.framework",
-				"${BUILT_PRODUCTS_DIR}/ReachabilitySwift/Reachability.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DecouplerKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Dip.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PromiseKit.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Reachability.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -405,13 +481,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				45B450132183087D00173518 /* ViewController.swift in Sources */,
-				45B4504D2183350700173518 /* Extensions.swift in Sources */,
+				45B450132183087D00173518 /* MainViewController.swift in Sources */,
+				459057982186B44700B20861 /* Venue.swift in Sources */,
+				459057942186B0D600B20861 /* Location.swift in Sources */,
+				459057AC2187D2C500B20861 /* Convenience.swift in Sources */,
+				459057B02187D77500B20861 /* VenueViewModel.swift in Sources */,
+				4590579A2186B50B00B20861 /* Meta.swift in Sources */,
+				4590579F2186B7B400B20861 /* APIResponse.swift in Sources */,
 				45B450492183256200173518 /* Errors.swift in Sources */,
+				459057962186B40F00B20861 /* ResponseBody.swift in Sources */,
 				45B4504421831C5600173518 /* LocationController.swift in Sources */,
+				45704A252183671600E162CA /* APIController.swift in Sources */,
 				45B450112183087D00173518 /* AppDelegate.swift in Sources */,
 				45B4504721831E9600173518 /* Enumerations.swift in Sources */,
-				45B4504E218336BA00173518 /* TestUtil.swift in Sources */,
+				459057A621870B0A00B20861 /* Reachability.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -419,7 +502,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				45704A272183675B00E162CA /* APIControllerTests.swift in Sources */,
+				459057A12186E86600B20861 /* NetworkingMocks.swift in Sources */,
+				459057B22187DCA200B20861 /* TaskTests.swift in Sources */,
 				45B4504221831A4F00173518 /* LocationControllerTests.swift in Sources */,
+				459057B42187E47600B20861 /* ErrorTests.swift in Sources */,
+				459057AA2187D01E00B20861 /* APIResponseTests.swift in Sources */,
 				45B4504B2183310200173518 /* TestUtil.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
