@@ -267,4 +267,18 @@ class APIControllerTests: XCTestCase {
         
         XCTAssert(api.reloadCalled)
     }
+    
+    func testAPIControllerRespondsWithReceivedTask() {
+        let registry = ResponderRegistry()
+        let dataTask = MockURLSessionDataTask()
+        session.dataTask = dataTask
+        
+        let api = APIController(session: URLSession(configuration: .default))
+            api.uiRegistry = registry
+            registry.register(inputHandler: api)
+        let promise = registry.tx(request: Request(proc: Task.api(.start)))
+        let response = promise.value as! Response
+        let task = response.process as! Task
+        XCTAssertTrue(task == Task.api(.start))
+    }
 }

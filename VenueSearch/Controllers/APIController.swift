@@ -14,7 +14,7 @@ let venueSearchEndPoint = "https://api.foursquare.com/v2/venues/search"
 let clientId = "DSXABGDSRON0OEK0YXWB3CSUNBJ5ZY4QH2LJWWR13H1M0NIR"
 let clientSecret = "SM1Z1N4WNVBCZ1I22XNFGOTSPFQFBOCEQ3IL00UJSISPMDWG"
 
-class APIController: NSObject, URLSessionDelegate {
+class APIController: NSObject, URLSessionDelegate, Interface {
     var uiRegistry: ResponderRegistry!
     
     var reachability: Reachability!
@@ -27,6 +27,21 @@ class APIController: NSObject, URLSessionDelegate {
         super.init()
         self.reachability = Reachability()
         self.session = session
+    }
+    
+    func tx(request: Request) -> Promise<MessageContainer> {
+        let task = request.process as! Task
+        switch task {
+        case .api(.start):
+            startMonitoring()
+            return Promise { seal in
+                seal.fulfill(Response(proc: task))
+            }
+        default:
+            return Promise { seal in
+                seal.reject(AppError.generic(.undefined(message: NSLocalizedString("APIController is unable to handle the task", comment: ""))))
+            }
+        }
     }
     
     func reloadList(latitude: Float, longitude: Float) {
