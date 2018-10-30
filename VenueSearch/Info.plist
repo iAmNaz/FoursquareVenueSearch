@@ -41,6 +41,8 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+    <key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+    <string>To allow this app to give you updated suggestions on location change.</string>
     <key>NSLocationWhenInUseUsageDescription</key>
     <string>To allow this app to give you updated suggestions on location change.</string>
 </dict>
