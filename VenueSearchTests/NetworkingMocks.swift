@@ -37,5 +37,4 @@ class MockURLSession: URLSessionProtocol {
         
         return dataTask
     }
-    
 }

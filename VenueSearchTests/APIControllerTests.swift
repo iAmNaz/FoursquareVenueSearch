@@ -8,6 +8,7 @@
 
 import XCTest
 import DecouplerKit
+import PromiseKit
 
 @testable import VenueSearch
 
@@ -16,8 +17,11 @@ class APIControllerTests: XCTestCase {
     var session = MockURLSession()
     var data: Data!
     var dataFailure: Data!
+    let urlRequest = URLRequest(url: URL(string: "http://www.test.com")!)
     
     override func setUp() {
+        PromiseKit.conf.Q.map = nil
+        PromiseKit.conf.Q.return = nil
         do {
             self.data = try loadDataFromJSONFile(name: "venues")
             self.dataFailure = try loadDataFromJSONFile(name: "venues-fail")
@@ -66,16 +70,16 @@ class APIControllerTests: XCTestCase {
     func testStartMonitoringWhenReachableShouldBeMarkedOnline() {
         let registry = MockRegistry()
         let api = APIController(session: session)
-        api.uiRegistry = registry
+            api.uiRegistry = registry
         
         let reachability = MockReachability()
             reachability!.currentConn = Connection.cellular
         
-        api.reachability = reachability
-        api.tx(request: Request(proc: Task.api(.start)))
+            api.reachability = reachability
+            api.tx(request: Request(proc: Task.api(.start)))
         
         let block = reachability?.whenReachable
-        block!(reachability!)
+            block!(reachability!)
         
         XCTAssert(registry.currentTask == Task.mainView(.online))
     }
@@ -83,31 +87,43 @@ class APIControllerTests: XCTestCase {
     func testStartMonitoringWhenStartNotifierThrowsException() {
         let registry = MockRegistry()
         let api = APIController(session: session)
-        api.uiRegistry = registry
+            api.uiRegistry = registry
         
         let reachability = MockReachability()
-        reachability!.currentConn = Connection.cellular
-        reachability!.shouldThrow = true
-        api.reachability = reachability
-        api.tx(request: Request(proc: Task.api(.start)))
+            reachability!.currentConn = Connection.cellular
+            reachability!.shouldThrow = true
+            api.reachability = reachability
+            api.tx(request: Request(proc: Task.api(.start)))
         
         XCTAssert(registry.currentTask == Task.mainView(.offline))
     }
 
     
     func testReloadListWhenReachabilityIsOnlineShouldBeMarkedFetching() {
+        
+        let expectation = XCTestExpectation(description: "Reload then fetching status")
+        
         let registry = MockRegistry()
         let api = APIController(session: session)
-        api.uiRegistry = registry
-        
+            api.uiRegistry = registry
+
         let reachability = MockReachability()
-        reachability!.currentConn = Connection.wifi
+            reachability!.currentConn = Connection.wifi
+
+            api.reachability = reachability
+            api.reloadList(latitude: 0, longitude: 0)
         
-        api.reachability = reachability
+        registry.taskReceived = { (req) -> () in
+            let task = req.process as! Task
+            switch task {
+            case .mainView(.fetching):
+                expectation.fulfill()
+            default:
+                print("")
+            }
+        }
         
-        api.reloadList(latitude: 0, longitude: 0)
-        
-        XCTAssert(registry.currentTask == Task.mainView(.fetching))
+        wait(for: [expectation], timeout: 5.0)
     }
 
     func testReloadListWhenCalledShouldResumeDataTask() {
@@ -116,14 +132,13 @@ class APIControllerTests: XCTestCase {
         session.dataTask = dataTask
         
         let api = APIController(session: session)
-        api.uiRegistry = registry
+            api.uiRegistry = registry
         
         let reachability = MockReachability()
-        reachability!.currentConn = Connection.wifi
+            reachability!.currentConn = Connection.wifi
         
-        api.reachability = reachability
-        
-        api.reloadList(latitude: 0, longitude: 0)
+            api.reachability = reachability
+            api.reloadList(latitude: 0, longitude: 0)
         
         XCTAssert(dataTask.resumeWasCalled == true)
     }
@@ -138,7 +153,7 @@ class APIControllerTests: XCTestCase {
             api.uiRegistry = registry
         
         let reachability = MockReachability()
-        reachability!.currentConn = Connection.wifi
+            reachability!.currentConn = Connection.wifi
         
         api.reachability = reachability
         
@@ -148,114 +163,162 @@ class APIControllerTests: XCTestCase {
     }
     
     func testReloadListShouldFailWhenDataTaskEncountersError() {
+        let expectation = XCTestExpectation(description: "Reload fail o dataTask error")
+        
         let registry = MockRegistry()
         let dataTask = MockURLSessionDataTask()
         session.dataTask = dataTask
-        
+
         let api = APIController(session: session)
-        api.uiRegistry = registry
-        
+            api.uiRegistry = registry
+
         let reachability = MockReachability()
-        reachability!.currentConn = Connection.wifi
-        
-        api.reachability = reachability
-        
-        api.reloadList(latitude: 0, longitude: 0)
-        
-        let urlRequest = URLRequest(url: URL(string: "http://www.test.com")!)
-        
+            reachability!.currentConn = Connection.wifi
+
+            api.reachability = reachability
+            api.reloadList(latitude: 0, longitude: 0)
+
+
         session.handler!(self.data, session.successHttpURLResponse(request: urlRequest), AppError.generic(.undefined(message: "Error")))
         
-        XCTAssert(registry.currentTask == Task.mainView(.fetchFailed))
+        registry.taskReceived = { (req) -> () in
+            let task = req.process as! Task
+            switch task {
+            case .mainView(.fetchFailed):
+                expectation.fulfill()
+            default:
+                print("")
+            }
+        }
+        
+        wait(for: [expectation], timeout: 5.0)
     }
     
     func testReloadListShouldFailWhenDataIsNil() {
+        
+        let expectation = XCTestExpectation(description: "Reload fail on nil data")
+        
         let registry = MockRegistry()
         let dataTask = MockURLSessionDataTask()
-        session.dataTask = dataTask
-        
+            session.dataTask = dataTask
+
         let api = APIController(session: session)
-        api.uiRegistry = registry
-        
+            api.uiRegistry = registry
+
         let reachability = MockReachability()
-        reachability!.currentConn = Connection.wifi
-        
-        api.reachability = reachability
-        
-        api.reloadList(latitude: 0, longitude: 0)
-        
-        let urlRequest = URLRequest(url: URL(string: "http://www.test.com")!)
-        
+            reachability!.currentConn = Connection.wifi
+
+            api.reachability = reachability
+            api.reloadList(latitude: 0, longitude: 0)
+
+
         session.handler!(nil, session.successHttpURLResponse(request: urlRequest), nil)
-        
-        XCTAssert(registry.currentTask == Task.mainView(.fetchFailed))
+
+        registry.taskReceived = { (req) -> () in
+            let task = req.process as! Task
+            switch task {
+            case .mainView(.fetchFailed):
+                expectation.fulfill()
+            default:
+                print("")
+            }
+        }
+        wait(for: [expectation], timeout: 5.0)
     }
     
     func testReloadListShouldCompleteWhenOnlineWithValidData() {
+        
+        let expectation = XCTestExpectation(description: "Reload completes with data")
+        
         let registry = MockRegistry()
         let dataTask = MockURLSessionDataTask()
-        session.dataTask = dataTask
-        
+            session.dataTask = dataTask
+
         let api = APIController(session: session)
-        api.uiRegistry = registry
-        
+            api.uiRegistry = registry
+
         let reachability = MockReachability()
-        reachability!.currentConn = Connection.wifi
-        
-        api.reachability = reachability
-        
-        api.reloadList(latitude: 0, longitude: 0)
-        
-        let urlRequest = URLRequest(url: URL(string: "http://www.test.com")!)
-        
+            reachability!.currentConn = Connection.wifi
+
+            api.reachability = reachability
+            api.reloadList(latitude: 0, longitude: 0)
+
         session.handler!(self.data, session.successHttpURLResponse(request: urlRequest), nil)
-        
-        XCTAssert(registry.currentTask == Task.mainView(.displayData))
+
+        registry.taskReceived = { (req) -> () in
+            let task = req.process as! Task
+            switch task {
+            case .mainView(.displayData):
+                expectation.fulfill()
+            default:
+                print("")
+            }
+        }
+        wait(for: [expectation], timeout: 5.0)
     }
-    
+
     func testReloadListShouldDisplay10Venues() {
+
+        let expectation = XCTestExpectation(description: "Fetch 10 Venues")
+
         let registry = MockRegistry()
         let dataTask = MockURLSessionDataTask()
-        session.dataTask = dataTask
-        
+            session.dataTask = dataTask
+
         let api = APIController(session: session)
-        api.uiRegistry = registry
-        
+            api.uiRegistry = registry
+
         let reachability = MockReachability()
-        reachability!.currentConn = Connection.wifi
-        
-        api.reachability = reachability
-        
-        api.reloadList(latitude: 0, longitude: 0)
-        
-        let urlRequest = URLRequest(url: URL(string: "http://www.test.com")!)
-        
+            reachability!.currentConn = Connection.wifi
+
+            api.reachability = reachability
+            api.reloadList(latitude: 0, longitude: 0)
+
         session.handler!(self.data, session.successHttpURLResponse(request: urlRequest), nil)
-        let vms = registry.request.body() as [VenueViewModel]
-        XCTAssert(vms.count == 10)
+
+        registry.taskReceived = { (req) -> () in
+            let task = req.process as! Task
+            switch task {
+            case .mainView(.displayData):
+                let vms = req.body() as [VenueViewModel]
+                XCTAssert(vms.count == 10)
+                expectation.fulfill()
+            default:
+                print("")
+            }
+        }
+
+        wait(for: [expectation], timeout: 5.0)
     }
 
     
     func testReloadListShouldFailWhenOnlineButWithHttpError() {
+        let expectation = XCTestExpectation(description: "Reload fail on HTTP Error")
         let registry = MockRegistry()
         let dataTask = MockURLSessionDataTask()
         session.dataTask = dataTask
         
         let api = APIController(session: session)
-        api.uiRegistry = registry
+            api.uiRegistry = registry
         
         let reachability = MockReachability()
-        reachability!.currentConn = Connection.wifi
+            reachability!.currentConn = Connection.wifi
         
-        api.reachability = reachability
-        
-        api.reloadList(latitude: 0, longitude: 0)
-        
-        let urlRequest = URLRequest(url: URL(string: "http://www.test.com")!)
+            api.reachability = reachability
+            api.reloadList(latitude: 0, longitude: 0)
         
         session.handler!(self.dataFailure, session.successHttpURLResponse(request: urlRequest), nil)
         
-        XCTAssert(registry.currentTask == Task.mainView(.fetchFailed))
+        registry.taskReceived = { (req) -> () in
+            let task = req.process as! Task
+            switch task {
+            case .mainView(.fetchFailed):
+                expectation.fulfill()
+            default:
+                print("")
+            }
+        }
+        wait(for: [expectation], timeout: 5.0)
     }
     
     func testLocationDelegateImplementedShouldDisplayData() {
@@ -271,7 +334,7 @@ class APIControllerTests: XCTestCase {
     func testAPIControllerRespondsWithReceivedTask() {
         let registry = ResponderRegistry()
         let dataTask = MockURLSessionDataTask()
-        session.dataTask = dataTask
+            session.dataTask = dataTask
         
         let api = APIController(session: URLSession(configuration: .default))
             api.uiRegistry = registry

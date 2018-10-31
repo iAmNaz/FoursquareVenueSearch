@@ -19,6 +19,8 @@ class MockAPIController: APIController {
     override func reloadList(latitude: Float, longitude: Float) {
         reloadCalled = true
     }
+    
+
 }
 
 class FakeLocationManagerData {
@@ -57,13 +59,21 @@ class MockTxReceiver: NSObject, Interface {
     }
 }
 
+typealias CompletionBlock = (Request) -> Void
+var completionBlock: CompletionBlock?
 class MockRegistry: ResponderRegistry {
 
     var currentTask: Task!
     var request: Request!
+    var taskReceived: CompletionBlock?
     
     override func tx(request: Request) -> Promise<MessageContainer> {
         self.request = request
+        
+        if taskReceived != nil {
+            taskReceived!(request)
+        }
+        
         currentTask = request.process as? Task
         return Promise { seal in
             seal.fulfill(Response(proc: request.process))
