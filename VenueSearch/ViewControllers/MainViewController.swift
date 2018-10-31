@@ -36,7 +36,7 @@ class MainViewController: UIViewController, Interface {
             let venues = request.body() as [VenueViewModel]
             self.displayVenues(venues: venues)
         case .mainView(.locationDisabled):
-            askPermission()
+            self.askPermission()
         default:
             return Promise { seal in
                 seal.reject(AppError.generic(.undefined(message: NSLocalizedString("LocationController is unable to handle the task", comment: ""))))
