@@ -116,7 +116,7 @@ class APIController: NSObject, URLSessionDelegate, Interface {
     
     private func transmitFetching() {
         DispatchQueue.main.async {
-            self.uiRegistry.tx(request: Request(proc: Task.mainView(.fetchCompleted)))
+            self.uiRegistry.tx(request: Request(proc: Task.mainView(.fetching)))
         }
     }
     
