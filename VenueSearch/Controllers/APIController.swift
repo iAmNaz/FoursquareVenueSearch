@@ -102,25 +102,25 @@ class APIController: NSObject, URLSessionDelegate, Interface {
         task.resume()
     }
     
-    func transmitDisplayData(venues: [VenueViewModel]) {
+    private func transmitDisplayData(venues: [VenueViewModel]) {
         DispatchQueue.main.async {
             self.uiRegistry.tx(request: Request(proc: Task.mainView(.displayData), body: venues))
         }
     }
     
-    func transmitCompleted() {
+    private func transmitCompleted() {
         DispatchQueue.main.async {
             self.uiRegistry.tx(request: Request(proc: Task.mainView(.fetchCompleted)))
         }
     }
     
-    func transmitFetching() {
+    private func transmitFetching() {
         DispatchQueue.main.async {
             self.uiRegistry.tx(request: Request(proc: Task.mainView(.fetchCompleted)))
         }
     }
     
-    func transmitFetchFailure() {
+    private func transmitFetchFailure() {
         DispatchQueue.main.async {
             self.uiRegistry.tx(request: Request(proc: Task.mainView(.fetchFailed)))
         }
