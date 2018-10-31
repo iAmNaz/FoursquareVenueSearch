@@ -62,19 +62,20 @@ class APIController: NSObject, URLSessionDelegate, Interface {
         
         let request = createVenueSearchRequest(latitude: latitude, longitude: longitude)
         
-        self.uiRegistry.tx(request: Request(proc: Task.mainView(.fetching)))
+        self.transmitFetching()
         
         let task = session.dataTask(with: request, completionHandler: {data, response, err -> Void in
             
             if err != nil {
-                self.uiRegistry.tx(request: Request(proc: Task.mainView(.fetchFailed)))
+                self.transmitFetchFailure()
                 return
             }
             
             if let inData = data {
                 do {
                     let response = try decodeJson(data: inData)
-                    self.uiRegistry.tx(request: Request(proc: Task.mainView(.fetchCompleted)))
+                    
+                    self.transmitCompleted()
                     
                     if response.meta.code == 200 {
                         
@@ -86,20 +87,43 @@ class APIController: NSObject, URLSessionDelegate, Interface {
                             let vm = VenueViewModel(venue: venue)
                                 venuesVM.append(vm)
                         }
-                        
-                        self.uiRegistry.tx(request: Request(proc: Task.mainView(.displayData), body: venuesVM))
+                        self.transmitDisplayData(venues: venuesVM)
                     } else{
-                        self.uiRegistry.tx(request: Request(proc: Task.mainView(.fetchFailed)))
+                        self.transmitFetchFailure()
                     }
                 } catch {
-                    self.uiRegistry.tx(request: Request(proc: Task.mainView(.fetchFailed)))
+                    self.transmitFetchFailure()
                 }
             }else{
-                self.uiRegistry.tx(request: Request(proc: Task.mainView(.fetchFailed)))
+                self.transmitFetchFailure()
             }
         })
         
         task.resume()
+    }
+    
+    func transmitDisplayData(venues: [VenueViewModel]) {
+        DispatchQueue.main.async {
+            self.uiRegistry.tx(request: Request(proc: Task.mainView(.displayData), body: venues))
+        }
+    }
+    
+    func transmitCompleted() {
+        DispatchQueue.main.async {
+            self.uiRegistry.tx(request: Request(proc: Task.mainView(.fetchCompleted)))
+        }
+    }
+    
+    func transmitFetching() {
+        DispatchQueue.main.async {
+            self.uiRegistry.tx(request: Request(proc: Task.mainView(.fetchCompleted)))
+        }
+    }
+    
+    func transmitFetchFailure() {
+        DispatchQueue.main.async {
+            self.uiRegistry.tx(request: Request(proc: Task.mainView(.fetchFailed)))
+        }
     }
     
     private func createVenueSearchRequest(latitude: Float, longitude: Float) -> URLRequest {

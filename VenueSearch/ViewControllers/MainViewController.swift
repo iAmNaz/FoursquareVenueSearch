@@ -23,30 +23,18 @@ class MainViewController: UIViewController, Interface {
         
         switch task {
         case .mainView(.online):
-            DispatchQueue.main.async { [weak self] in
-                self!.online()
-            }
+            self.online()
         case .mainView(.offline):
-            DispatchQueue.main.async { [weak self] in
-                self!.offline()
-            }
+            self.offline()
         case .mainView(.fetching):
-            DispatchQueue.main.async { [weak self] in
-                self!.loading()
-            }
+            self.loading()
         case .mainView(.fetchFailed):
-            DispatchQueue.main.async { [weak self] in
-                self!.networkIndicator(show: false)
-            }
+            self.networkIndicator(show: false)
         case .mainView(.fetchCompleted):
-            DispatchQueue.main.async { [weak self] in
-                self!.networkingComplete()
-            }
+            self.networkingComplete()
         case .mainView(.displayData):
-            DispatchQueue.main.async { [weak self] in
-                let venues = request.body() as [VenueViewModel]
-                self!.displayVenues(venues: venues)
-            }
+            let venues = request.body() as [VenueViewModel]
+            self.displayVenues(venues: venues)
         case .mainView(.locationDisabled):
             askPermission()
         default:
